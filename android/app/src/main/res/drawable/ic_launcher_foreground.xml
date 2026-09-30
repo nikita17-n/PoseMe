@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PoseMe adaptive icon foreground: a minimal figure forming a "P"
+     with a tiny sparkle, drawn in soft rose on the cream background. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Head -->
+    <path
+        android:fillColor="#EFA3B5"
+        android:pathData="M45,18 a12,12 0 1,1 24,0 a12,12 0 1,1 -24,0 Z" />
+
+    <!-- Body: vertical stroke of the "P" -->
+    <path
+        android:strokeColor="#EFA3B5"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:pathData="M45,42 L45,76" />
+
+    <!-- Arm curving out to form the bowl of the "P" -->
+    <path
+        android:strokeColor="#EFA3B5"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:pathData="M45,50 C64,46 72,56 66,64 C62,70 48,70 45,66" />
+
+    <!-- Legs -->
+    <path
+        android:strokeColor="#EFA3B5"
+        android:strokeWidth="7"
+        android:strokeLineCap="round"
+        android:pathData="M45,76 L36,92" />
+    <path
+        android:strokeColor="#EFA3B5"
+        android:strokeWidth="7"
+        android:strokeLineCap="round"
+        android:pathData="M45,76 L56,90" />
+
+    <!-- Sparkle -->
+    <path
+        android:fillColor="#D98FA3"
+        android:pathData="M78,14 C78.8,20 82,23.2 88,24 C82,24.8 78.8,28 78,34 C77.2,28 74,24.8 68,24 C74,23.2 77.2,20 78,14 Z" />
+</vector>
