@@ -36,6 +36,7 @@ class _PoseSetupScreenState extends State<PoseSetupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: PoseIconButton(
           icon: PoseIconType.back,
@@ -66,8 +67,8 @@ class _PoseSetupScreenState extends State<PoseSetupScreen> {
                 icon: PoseIconType.gallery,
                 title: 'UPLOAD A POSE',
                 subtitle: 'Choose a photo from your gallery',
-                background: AppColors.softPeach,
-                iconColor: AppColors.dustyRose,
+                background: AppColors.lightBlush,
+                iconColor: AppColors.brightRose,
                 onTap: () => _pickImage(ImageSource.gallery),
               ),
               const SizedBox(height: 16),
@@ -75,8 +76,8 @@ class _PoseSetupScreenState extends State<PoseSetupScreen> {
                 icon: PoseIconType.camera,
                 title: 'TAKE A PHOTO',
                 subtitle: 'Capture your reference pose',
-                background: AppColors.pastelLavender,
-                iconColor: AppColors.mauve,
+                background: AppColors.softLavender,
+                iconColor: AppColors.primaryPink,
                 onTap: () => _pickImage(ImageSource.camera),
               ),
               const SizedBox(height: 34),
@@ -84,14 +85,14 @@ class _PoseSetupScreenState extends State<PoseSetupScreen> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: const [
-                    Sparkle(size: 15, color: AppColors.blushPink),
+                    Sparkle(size: 15, color: AppColors.primaryPink),
                     SizedBox(width: 10),
                     Text(
                       'Full-body photos work best',
                       style: AppTextStyles.caption,
                     ),
                     SizedBox(width: 10),
-                    Sparkle(size: 15, color: AppColors.blushPink),
+                    Sparkle(size: 15, color: AppColors.primaryPink),
                   ],
                 ),
               ),
@@ -159,7 +160,7 @@ class _SetupCardState extends State<_SetupCard> {
                 width: 54,
                 height: 54,
                 decoration: BoxDecoration(
-                  color: AppColors.softIvory,
+                  color: AppColors.white,
                   shape: BoxShape.circle,
                   border: Border.all(color: AppColors.hairline),
                 ),
@@ -185,7 +186,7 @@ class _SetupCardState extends State<_SetupCard> {
               const PoseIcon(
                 PoseIconType.back,
                 size: 18,
-                color: AppColors.mutedRoseGray,
+                color: AppColors.secondaryText,
               ),
             ],
           ),

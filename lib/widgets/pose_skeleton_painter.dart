@@ -33,13 +33,13 @@ class PoseSkeletonPainter extends CustomPainter {
     }
 
     final bonePaint = Paint()
-      ..color = AppColors.dustyRose
+      ..color = AppColors.primaryPink
       ..strokeWidth = 3.0
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
     final jointPaint = Paint()
-      ..color = AppColors.softRose
+      ..color = AppColors.brightRose
       ..style = PaintingStyle.fill;
 
     // Draw bones

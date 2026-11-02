@@ -29,12 +29,13 @@ enum PoseIconType {
   help,
   check,
   poseMatch,
+  search,
 }
 
 /// A single PoseMe line icon.
 ///
 /// ```dart
-/// const PoseIcon(PoseIconType.sparkle, size: 20, color: AppColors.dustyRose)
+/// const PoseIcon(PoseIconType.sparkle, size: 20, color: AppColors.brightRose)
 /// ```
 class PoseIcon extends StatelessWidget {
   final PoseIconType type;
@@ -45,7 +46,7 @@ class PoseIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final iconColor = color ?? AppColors.deepPlum;
+    final iconColor = color ?? AppColors.text;
     return SizedBox(
       width: size,
       height: size,
@@ -118,6 +119,8 @@ class _PoseIconPainter extends CustomPainter {
         _check(canvas, paint);
       case PoseIconType.poseMatch:
         _poseMatch(canvas, paint);
+      case PoseIconType.search:
+        _search(canvas, paint);
     }
   }
 
@@ -391,6 +394,15 @@ class _PoseIconPainter extends CustomPainter {
       ..lineTo(17, 18.6)
       ..lineTo(19.2, 16.2);
     canvas.drawPath(check, paint);
+  }
+
+  void _search(Canvas canvas, Paint paint) {
+    // Magnifying glass with handle.
+    final glass = Path()
+      ..addOval(Rect.fromCircle(center: const Offset(9.6, 9.6), radius: 4.4))
+      ..moveTo(14, 14)
+      ..lineTo(19.2, 19.2);
+    canvas.drawPath(glass, paint);
   }
 
   @override

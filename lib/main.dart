@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'screens/favorites_screen.dart';
+import 'screens/explore_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/live_camera_screen.dart';
-import 'screens/pose_discovery_screen.dart';
 import 'screens/profile_screen.dart';
+import 'screens/saved_poses_screen.dart';
+import 'screens/welcome_screen.dart';
 import 'theme/app_theme.dart';
 import 'utils/pose_page_route.dart';
 import 'widgets/bottom_nav.dart';
@@ -22,12 +23,12 @@ class PoseMeApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'PoseMe',
       theme: AppTheme.light,
-      home: const MainShell(),
+      home: const WelcomeScreen(),
     );
   }
 }
 
-/// Root shell hosting the five main tabs with the bottom navigation bar.
+/// Root shell hosting the bottom-navigation tabs.
 class MainShell extends StatefulWidget {
   const MainShell({super.key});
 
@@ -40,15 +41,14 @@ class _MainShellState extends State<MainShell> {
 
   static const _tabs = [
     HomeScreen(),
-    PoseDiscoveryScreen(),
-    LiveCameraScreen(),
-    FavoritesScreen(),
+    ExploreScreen(),
+    SavedPosesScreen(),
     ProfileScreen(),
   ];
 
   void _onTabSelected(int index) {
     if (index == 2) {
-      // Camera tab opens the live camera screen as its own flow.
+      // Camera tab opens the live camera screen as its own pushed flow.
       Navigator.of(context)
           .push(PosePageRoute(builder: (_) => const LiveCameraScreen()));
       return;

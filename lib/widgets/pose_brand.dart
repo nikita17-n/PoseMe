@@ -19,8 +19,8 @@ class PoseLogo extends StatelessWidget {
   const PoseLogo({
     super.key,
     this.size = 72,
-    this.color = AppColors.softRose,
-    this.sparkleColor = AppColors.dustyRose,
+    this.color = AppColors.primaryPink,
+    this.sparkleColor = AppColors.brightRose,
     this.withSparkle = true,
   });
 
@@ -121,8 +121,8 @@ class PoseFigure extends StatelessWidget {
   const PoseFigure({
     super.key,
     this.height = 220,
-    this.color = AppColors.softRose,
-    this.sparkleColor = AppColors.dustyRose,
+    this.color = AppColors.primaryPink,
+    this.sparkleColor = AppColors.brightRose,
   });
 
   @override
@@ -218,7 +218,7 @@ class Sparkle extends StatefulWidget {
   final double size;
   final Color color;
 
-  const Sparkle({super.key, this.size = 18, this.color = AppColors.dustyRose});
+  const Sparkle({super.key, this.size = 18, this.color = AppColors.brightRose});
 
   @override
   State<Sparkle> createState() => _SparkleState();

@@ -19,6 +19,7 @@ class ReferencePoseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: PoseIconButton(
           icon: PoseIconType.back,

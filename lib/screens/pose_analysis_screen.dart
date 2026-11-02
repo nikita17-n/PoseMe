@@ -75,6 +75,7 @@ class _PoseAnalysisScreenState extends State<PoseAnalysisScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: PoseIconButton(
           icon: PoseIconType.back,
@@ -119,14 +120,19 @@ class _AnalyzingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimens.screenPadding),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppDimens.screenPadding,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 8),
           Text('Reading your pose...', style: AppTextStyles.heading),
           const SizedBox(height: 10),
-          const Text('Finding your pose landmarks', style: AppTextStyles.body),
+          const Text(
+            'Finding your pose landmarks',
+            style: AppTextStyles.body,
+          ),
           const SizedBox(height: 28),
           Expanded(
             child: Center(
@@ -136,9 +142,9 @@ class _AnalyzingView extends StatelessWidget {
                   fit: StackFit.expand,
                   children: [
                     Image.file(imageFile, fit: BoxFit.cover),
-                    // Soft rose tint so the photo feels part of the UI.
+                    // Soft pink tint so the photo feels part of the UI.
                     Container(
-                      color: AppColors.softRose.withValues(alpha: 0.10),
+                      color: AppColors.primaryPink.withValues(alpha: 0.10),
                     ),
                     const _ScanOverlay(),
                   ],
@@ -214,7 +220,7 @@ class _ScanFramePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final frame = Paint()
-      ..color = AppColors.softRose
+      ..color = AppColors.primaryPink
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 
@@ -245,7 +251,7 @@ class _ScanFramePainter extends CustomPainter {
     // Scanning line sweeping vertically.
     final y = inset + (h - inset * 2) * progress;
     final line = Paint()
-      ..color = AppColors.dustyRose.withValues(alpha: 0.85)
+      ..color = AppColors.brightRose.withValues(alpha: 0.85)
       ..strokeWidth = 2.4
       ..strokeCap = StrokeCap.round;
     canvas.drawLine(
@@ -279,14 +285,14 @@ class _ErrorView extends StatelessWidget {
             width: 92,
             height: 92,
             decoration: const BoxDecoration(
-              color: AppColors.softPeach,
+              color: AppColors.lightBlush,
               shape: BoxShape.circle,
             ),
             child: const Center(
               child: PoseIcon(
                 PoseIconType.body,
                 size: 40,
-                color: AppColors.dustyRose,
+                color: AppColors.brightRose,
               ),
             ),
           ),
@@ -378,7 +384,7 @@ class _ResultView extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
             decoration: BoxDecoration(
-              color: AppColors.softIvory,
+              color: AppColors.white,
               borderRadius: BorderRadius.circular(AppDimens.radiusCard),
               border: Border.all(color: AppColors.hairline),
             ),
@@ -387,7 +393,7 @@ class _ResultView extends StatelessWidget {
                 const PoseIcon(
                   PoseIconType.sparkle,
                   size: 22,
-                  color: AppColors.dustyRose,
+                  color: AppColors.brightRose,
                 ),
                 const SizedBox(width: 14),
                 Expanded(
@@ -413,13 +419,13 @@ class _ResultView extends StatelessWidget {
                     vertical: 7,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.softSage.withValues(alpha: 0.35),
+                    color: AppColors.softLavender.withValues(alpha: 0.4),
                     borderRadius: BorderRadius.circular(AppDimens.radiusChip),
                   ),
                   child: Text(
                     'Good',
                     style: AppTextStyles.caption.copyWith(
-                      color: AppColors.deepPlum,
+                      color: AppColors.text,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -450,7 +456,10 @@ class _ResultView extends StatelessWidget {
 
   double _averageConfidence(List<PoseLandmark> landmarks) {
     if (landmarks.isEmpty) return 0;
-    final sum = landmarks.fold<double>(0, (acc, lm) => acc + lm.likelihood);
+    final sum = landmarks.fold<double>(
+      0,
+      (acc, lm) => acc + lm.likelihood,
+    );
     return (sum / landmarks.length).clamp(0.0, 1.0);
   }
 }
@@ -464,16 +473,16 @@ class _LandmarkTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final confidence = landmark.likelihood;
     final Color indicatorColor = confidence > 0.7
-        ? AppColors.softSage
+        ? AppColors.primaryPink
         : confidence > 0.4
-        ? AppColors.softRose
-        : AppColors.mauve;
+            ? AppColors.brightRose
+            : AppColors.dustyRose;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 6),
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
       decoration: BoxDecoration(
-        color: AppColors.softIvory,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: AppColors.hairline),
       ),

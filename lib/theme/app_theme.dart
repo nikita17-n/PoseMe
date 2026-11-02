@@ -1,57 +1,45 @@
 import 'package:flutter/material.dart';
 
-/// Centralized PoseMe palette — soft pastel pinks, warm creams, deep plum.
+/// Centralized PoseMe palette — soft pastel pinks matching the reference design.
 ///
-/// Every screen should pull colors from here so the pastel design stays
-/// consistent across the whole app.
+/// Every screen pulls colors from here so the pastel design stays consistent.
 class AppColors {
   AppColors._();
 
   // Primary pinks
-  static const Color blushPink = Color(0xFFF4B6C2);
-  static const Color softRose = Color(0xFFEFA3B5);
+  static const Color primaryPink = Color(0xFFF4A9C0);   // #F4A9C0
+  static const Color brightRose = Color(0xFFEC75A0);    // #EC75A0
+  static const Color lightBlush = Color(0xFFFCE8EF);    // #FCE8EF
+  static const Color dustyRose = Color(0xFFD994AA);     // #D994AA
 
   // Backgrounds
-  static const Color warmCream = Color(0xFFFFF9F7);
-  static const Color softIvory = Color(0xFFFFFDFB);
-
-  // Secondary
-  static const Color dustyRose = Color(0xFFD98FA3);
-  static const Color mauve = Color(0xFFB98295);
-
-  // Accents
-  static const Color softPeach = Color(0xFFF8D8CF);
-  static const Color pastelLavender = Color(0xFFDDD2EA);
+  static const Color background = Color(0xFFFFF7F9);    // #FFF7F9
+  static const Color white = Color(0xFFFFFFFF);         // #FFFFFF
+  static const Color softLavender = Color(0xFFE9DFF2);  // #E9DFF2
 
   // Text
-  static const Color deepPlum = Color(0xFF3B2733);
-  static const Color mutedRoseGray = Color(0xFF806875);
+  static const Color text = Color(0xFF49343F);          // #49343F
+  static const Color secondaryText = Color(0xFF9B8490); // #9B8490
 
   // Semantic
-  static const Color softSage = Color(0xFFB8D8C0);
-
-  // Lines & surfaces
   static const Color hairline = Color(0xFFF3E4E4);
-  static const Color cardShadow = Color(0x14B98295);
+  static const Color cardShadow = Color(0x14EC75A0);
 }
 
-/// Shared spacing / sizing values so layouts stay balanced on small screens.
+/// Shared spacing / sizing values.
 class AppDimens {
   AppDimens._();
 
-  static const double radiusCard = 22;
-  static const double radiusImage = 26;
+  static const double radiusCard = 20;
+  static const double radiusImage = 24;
   static const double radiusButton = 16;
   static const double radiusChip = 999;
 
-  static const double screenPadding = 22;
-  static const double sectionGap = 30;
+  static const double screenPadding = 20;
+  static const double sectionGap = 24;
 }
 
 /// Centralized text styles.
-///
-/// Headings use a serif family for an editorial, fashion-magazine feel;
-/// body text stays in the clean default sans-serif for readability.
 class AppTextStyles {
   AppTextStyles._();
 
@@ -59,63 +47,62 @@ class AppTextStyles {
 
   static const TextStyle display = TextStyle(
     fontFamily: _serif,
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: FontWeight.w600,
-    color: AppColors.deepPlum,
-    height: 1.15,
-    letterSpacing: -0.5,
+    color: AppColors.text,
+    height: 1.2,
+    letterSpacing: -0.4,
   );
 
   static const TextStyle heading = TextStyle(
     fontFamily: _serif,
-    fontSize: 27,
+    fontSize: 24,
     fontWeight: FontWeight.w600,
-    color: AppColors.deepPlum,
-    height: 1.2,
-    letterSpacing: -0.3,
+    color: AppColors.text,
+    height: 1.25,
   );
 
   static const TextStyle title = TextStyle(
     fontFamily: _serif,
-    fontSize: 21,
+    fontSize: 18,
     fontWeight: FontWeight.w600,
-    color: AppColors.deepPlum,
-    height: 1.25,
+    color: AppColors.text,
+    height: 1.3,
   );
 
   static const TextStyle body = TextStyle(
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: AppColors.mutedRoseGray,
-    height: 1.55,
+    color: AppColors.secondaryText,
+    height: 1.5,
   );
 
   static const TextStyle bodyStrong = TextStyle(
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: FontWeight.w500,
-    color: AppColors.deepPlum,
+    color: AppColors.text,
     height: 1.5,
   );
 
   static const TextStyle button = TextStyle(
-    fontSize: 15.5,
-    fontWeight: FontWeight.w500,
-    color: AppColors.deepPlum,
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    color: AppColors.white,
     letterSpacing: 0.2,
   );
 
   static const TextStyle label = TextStyle(
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: FontWeight.w600,
-    color: AppColors.dustyRose,
-    letterSpacing: 1.4,
+    color: AppColors.brightRose,
+    letterSpacing: 0.8,
   );
 
   static const TextStyle caption = TextStyle(
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: FontWeight.w400,
-    color: AppColors.mutedRoseGray,
-    height: 1.45,
+    color: AppColors.secondaryText,
+    height: 1.4,
   );
 }
 
@@ -127,28 +114,28 @@ class AppTheme {
     final base = ThemeData.light(useMaterial3: true);
 
     return base.copyWith(
-      scaffoldBackgroundColor: AppColors.warmCream,
+      scaffoldBackgroundColor: AppColors.background,
       colorScheme: base.colorScheme.copyWith(
-        primary: AppColors.softRose,
-        onPrimary: AppColors.deepPlum,
-        secondary: AppColors.dustyRose,
-        onSecondary: AppColors.softIvory,
-        surface: AppColors.softIvory,
-        onSurface: AppColors.deepPlum,
-        error: AppColors.mauve,
+        primary: AppColors.primaryPink,
+        onPrimary: AppColors.white,
+        secondary: AppColors.brightRose,
+        onSecondary: AppColors.white,
+        surface: AppColors.white,
+        onSurface: AppColors.text,
+        error: AppColors.dustyRose,
       ),
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.warmCream,
+        backgroundColor: AppColors.background,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: false,
-        iconTheme: IconThemeData(color: AppColors.deepPlum),
+        iconTheme: IconThemeData(color: AppColors.text),
         titleTextStyle: TextStyle(
           fontFamily: 'serif',
           fontSize: 20,
           fontWeight: FontWeight.w600,
-          color: AppColors.deepPlum,
+          color: AppColors.text,
         ),
       ),
       dividerTheme: const DividerThemeData(
@@ -157,8 +144,8 @@ class AppTheme {
         space: 1,
       ),
       snackBarTheme: const SnackBarThemeData(
-        backgroundColor: AppColors.deepPlum,
-        contentTextStyle: TextStyle(color: AppColors.softIvory),
+        backgroundColor: AppColors.text,
+        contentTextStyle: TextStyle(color: AppColors.white),
         behavior: SnackBarBehavior.floating,
       ),
     );

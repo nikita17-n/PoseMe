@@ -33,25 +33,22 @@ class _LiveCameraScreenState extends State<LiveCameraScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.deepPlum,
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Stack(
           children: [
             // Camera preview placeholder.
             Positioned.fill(
               child: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Color(0xFF4A3542), Color(0xFF2A1B24)],
-                  ),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(AppDimens.radiusImage),
                 ),
                 child: const Center(
                   child: PoseIcon(
                     PoseIconType.camera,
                     size: 54,
-                    color: AppColors.blushPink,
+                    color: AppColors.primaryPink,
                   ),
                 ),
               ),
@@ -63,8 +60,8 @@ class _LiveCameraScreenState extends State<LiveCameraScreen> {
                 child: Center(
                   child: PoseFigure(
                     height: 320,
-                    color: AppColors.blushPink,
-                    sparkleColor: AppColors.softPeach,
+                    color: AppColors.lightBlush,
+                    sparkleColor: AppColors.softLavender,
                   ),
                 ),
               ),
@@ -77,24 +74,28 @@ class _LiveCameraScreenState extends State<LiveCameraScreen> {
                 children: [
                   PoseIconButton(
                     icon: PoseIconType.back,
-                    color: AppColors.softIvory,
-                    background: Colors.black26,
+                    color: AppColors.text,
+                    background: AppColors.white,
                     onPressed: () => Navigator.of(context).maybePop(),
                   ),
                   const Spacer(),
                   PoseIconButton(
                     icon: PoseIconType.flash,
-                    color: _flashOn ? AppColors.softRose : AppColors.softIvory,
-                    background: Colors.black26,
+                    color: _flashOn ? AppColors.brightRose : AppColors.text,
+                    background: AppColors.white,
                     onPressed: () => setState(() => _flashOn = !_flashOn),
                   ),
                   const SizedBox(width: 10),
                   PoseIconButton(
                     icon: PoseIconType.flip,
-                    color: AppColors.softIvory,
-                    background: Colors.black26,
+                    color: AppColors.text,
+                    background: AppColors.white,
                     onPressed: () {
-                      // UI placeholder — camera switching not implemented.
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Camera switching is coming soon.'),
+                        ),
+                      );
                     },
                   ),
                 ],
@@ -118,12 +119,12 @@ class _LiveCameraScreenState extends State<LiveCameraScreen> {
                         vertical: 10,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black38,
+                        color: AppColors.white,
                         borderRadius: BorderRadius.circular(
                           AppDimens.radiusChip,
                         ),
                         border: Border.all(
-                          color: AppColors.blushPink.withValues(alpha: 0.5),
+                          color: AppColors.primaryPink.withValues(alpha: 0.5),
                         ),
                       ),
                       child: Row(
@@ -134,7 +135,7 @@ class _LiveCameraScreenState extends State<LiveCameraScreen> {
                           Text(
                             'Match score appears here',
                             style: TextStyle(
-                              color: AppColors.softIvory,
+                              color: AppColors.text,
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 0.2,
@@ -152,17 +153,18 @@ class _LiveCameraScreenState extends State<LiveCameraScreen> {
                         vertical: 12,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.softIvory,
+                        color: AppColors.white,
                         borderRadius: BorderRadius.circular(
                           AppDimens.radiusCard,
                         ),
+                        border: Border.all(color: AppColors.hairline),
                       ),
                       child: Row(
                         children: [
                           const PoseIcon(
                             PoseIconType.poseMatch,
                             size: 22,
-                            color: AppColors.dustyRose,
+                            color: AppColors.brightRose,
                           ),
                           const SizedBox(width: 12),
                           const Expanded(
@@ -185,7 +187,7 @@ class _LiveCameraScreenState extends State<LiveCameraScreen> {
                     const Text(
                       'Hold your pose',
                       style: TextStyle(
-                        color: AppColors.blushPink,
+                        color: AppColors.primaryPink,
                         fontSize: 12.5,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 0.6,
@@ -221,18 +223,23 @@ class _CaptureButtonState extends State<_CaptureButton> {
       onTapUp: (_) => setState(() => _pressed = false),
       onTapCancel: () => setState(() => _pressed = false),
       onTap: widget.onTap,
-      child: AnimatedScale(
-        scale: _pressed ? 0.9 : 1.0,
-        duration: const Duration(milliseconds: 140),
+      child: AnimatedBuilder(
+        animation: AlwaysStoppedAnimation<double>(_pressed ? 0.9 : 1.0),
+        builder: (context, child) {
+          return Transform.scale(
+            scale: _pressed ? 0.9 : 1.0,
+            child: child,
+          );
+        },
         child: Container(
           width: 74,
           height: 74,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: AppColors.softIvory, width: 3.5),
+            border: Border.all(color: AppColors.primaryPink, width: 3.5),
             boxShadow: const [
               BoxShadow(
-                color: Colors.black38,
+                color: AppColors.cardShadow,
                 blurRadius: 16,
                 offset: Offset(0, 6),
               ),
@@ -243,14 +250,14 @@ class _CaptureButtonState extends State<_CaptureButton> {
               width: 58,
               height: 58,
               decoration: const BoxDecoration(
-                color: AppColors.softRose,
+                color: AppColors.primaryPink,
                 shape: BoxShape.circle,
               ),
-              child: const Center(
+              child: Center(
                 child: PoseIcon(
                   PoseIconType.capture,
                   size: 26,
-                  color: AppColors.deepPlum,
+                  color: AppColors.white,
                 ),
               ),
             ),

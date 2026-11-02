@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import 'pose_icons.dart';
 
-/// Primary PoseMe button — soft rose fill, deep plum text, pill shape.
+/// Primary PoseMe button — primary pink fill, white text.
 class PosePrimaryButton extends StatefulWidget {
   final String label;
   final VoidCallback? onPressed;
   final PoseIconType? icon;
   final bool expanded;
-  final bool busy;
 
   const PosePrimaryButton({
     super.key,
@@ -17,7 +16,6 @@ class PosePrimaryButton extends StatefulWidget {
     this.onPressed,
     this.icon,
     this.expanded = true,
-    this.busy = false,
   });
 
   @override
@@ -35,7 +33,7 @@ class _PosePrimaryButtonState extends State<PosePrimaryButton> {
 
   @override
   Widget build(BuildContext context) {
-    final enabled = widget.onPressed != null && !widget.busy;
+    final enabled = widget.onPressed != null;
 
     return GestureDetector(
       onTapDown: (_) => _setPressed(true),
@@ -48,41 +46,33 @@ class _PosePrimaryButtonState extends State<PosePrimaryButton> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
           width: widget.expanded ? double.infinity : null,
-          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           decoration: BoxDecoration(
-            color: enabled ? AppColors.softRose : AppColors.blushPink,
+            color: enabled ? AppColors.primaryPink : AppColors.lightBlush,
             borderRadius: BorderRadius.circular(AppDimens.radiusButton),
             boxShadow: enabled
                 ? const [
                     BoxShadow(
                       color: AppColors.cardShadow,
-                      blurRadius: 18,
-                      offset: Offset(0, 8),
+                      blurRadius: 16,
+                      offset: Offset(0, 6),
                     ),
                   ]
                 : null,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: widget.expanded ? MainAxisSize.max : MainAxisSize.min,
+            mainAxisSize:
+                widget.expanded ? MainAxisSize.max : MainAxisSize.min,
             children: [
-              if (widget.busy)
-                const SizedBox(
-                  width: 18,
-                  height: 18,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2.2,
-                    color: AppColors.deepPlum,
-                  ),
-                )
-              else if (widget.icon != null) ...[
-                PoseIcon(widget.icon!, size: 19, color: AppColors.deepPlum),
-                const SizedBox(width: 9),
+              if (widget.icon != null) ...[
+                PoseIcon(widget.icon!, size: 18, color: AppColors.white),
+                const SizedBox(width: 8),
               ],
               Text(
                 widget.label,
                 style: AppTextStyles.button.copyWith(
-                  color: enabled ? AppColors.deepPlum : AppColors.mutedRoseGray,
+                  color: enabled ? AppColors.white : AppColors.secondaryText,
                 ),
               ),
             ],
@@ -93,7 +83,7 @@ class _PosePrimaryButtonState extends State<PosePrimaryButton> {
   }
 }
 
-/// Secondary PoseMe button — ivory fill, rose hairline border, plum text.
+/// Secondary PoseMe button — white fill, pink border, text-colored text.
 class PoseSecondaryButton extends StatefulWidget {
   final String label;
   final VoidCallback? onPressed;
@@ -136,27 +126,29 @@ class _PoseSecondaryButtonState extends State<PoseSecondaryButton> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
           width: widget.expanded ? double.infinity : null,
-          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           decoration: BoxDecoration(
-            color: enabled ? AppColors.softIvory : AppColors.warmCream,
+            color: AppColors.white,
             borderRadius: BorderRadius.circular(AppDimens.radiusButton),
             border: Border.all(
-              color: enabled ? AppColors.blushPink : AppColors.hairline,
+              color: enabled ? AppColors.primaryPink : AppColors.hairline,
               width: 1.4,
             ),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: widget.expanded ? MainAxisSize.max : MainAxisSize.min,
+            mainAxisSize:
+                widget.expanded ? MainAxisSize.max : MainAxisSize.min,
             children: [
               if (widget.icon != null) ...[
-                PoseIcon(widget.icon!, size: 19, color: AppColors.dustyRose),
-                const SizedBox(width: 9),
+                PoseIcon(widget.icon!, size: 18, color: AppColors.brightRose),
+                const SizedBox(width: 8),
               ],
               Text(
                 widget.label,
                 style: AppTextStyles.button.copyWith(
-                  color: enabled ? AppColors.deepPlum : AppColors.mutedRoseGray,
+                  color: enabled ? AppColors.text : AppColors.secondaryText,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],
@@ -206,7 +198,7 @@ class _PoseIconButtonState extends State<PoseIconButton> {
           width: widget.size,
           height: widget.size,
           decoration: BoxDecoration(
-            color: widget.background ?? AppColors.softIvory,
+            color: widget.background ?? AppColors.white,
             shape: BoxShape.circle,
             border: Border.all(color: AppColors.hairline),
             boxShadow: const [
@@ -221,7 +213,7 @@ class _PoseIconButtonState extends State<PoseIconButton> {
             child: PoseIcon(
               widget.icon,
               size: widget.iconSize,
-              color: widget.color ?? AppColors.deepPlum,
+              color: widget.color ?? AppColors.text,
             ),
           ),
         ),

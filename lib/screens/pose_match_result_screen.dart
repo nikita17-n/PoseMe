@@ -5,7 +5,7 @@ import '../utils/pose_page_route.dart';
 import '../widgets/pose_buttons.dart';
 import '../widgets/pose_brand.dart';
 import '../widgets/pose_icons.dart';
-import 'pose_discovery_screen.dart';
+import 'explore_screen.dart';
 
 /// Pose match result — UI placeholder.
 ///
@@ -19,6 +19,7 @@ class PoseMatchResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         leading: PoseIconButton(
           icon: PoseIconType.close,
@@ -51,7 +52,7 @@ class PoseMatchResultScreen extends StatelessWidget {
                 child: Container(
                   height: 300,
                   decoration: BoxDecoration(
-                    color: AppColors.softPeach,
+                    color: AppColors.lightBlush,
                     border: Border.all(color: AppColors.hairline),
                     borderRadius: BorderRadius.circular(AppDimens.radiusImage),
                   ),
@@ -67,7 +68,7 @@ class PoseMatchResultScreen extends StatelessWidget {
                   vertical: 20,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.softIvory,
+                  color: AppColors.white,
                   borderRadius: BorderRadius.circular(AppDimens.radiusCard),
                   border: Border.all(color: AppColors.hairline),
                 ),
@@ -81,7 +82,7 @@ class PoseMatchResultScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: AppColors.blushPink,
+                          color: AppColors.primaryPink,
                           width: 5,
                         ),
                       ),
@@ -91,7 +92,7 @@ class PoseMatchResultScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 34,
                             fontWeight: FontWeight.w300,
-                            color: AppColors.dustyRose,
+                            color: AppColors.brightRose,
                           ),
                         ),
                       ),
@@ -113,7 +114,7 @@ class PoseMatchResultScreen extends StatelessWidget {
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.softIvory,
+                  color: AppColors.white,
                   borderRadius: BorderRadius.circular(AppDimens.radiusCard),
                   border: Border.all(color: AppColors.hairline),
                 ),
@@ -132,7 +133,11 @@ class PoseMatchResultScreen extends StatelessWidget {
                 label: 'Save Photo',
                 icon: PoseIconType.favorite,
                 onPressed: () {
-                  // UI placeholder — saving not implemented yet.
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Saving photos is coming soon.'),
+                    ),
+                  );
                 },
               ),
               const SizedBox(height: 14),
@@ -147,7 +152,7 @@ class PoseMatchResultScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(
                       PosePageRoute(
-                        builder: (_) => const PoseDiscoveryScreen(),
+                        builder: (_) => const ExploreScreen(),
                       ),
                     );
                   },
@@ -158,9 +163,9 @@ class PoseMatchResultScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: AppColors.dustyRose,
+                        color: AppColors.brightRose,
                         decoration: TextDecoration.underline,
-                        decorationColor: AppColors.dustyRose,
+                        decorationColor: AppColors.brightRose,
                       ),
                     ),
                   ),
@@ -195,13 +200,13 @@ class _BreakdownRow extends StatelessWidget {
           const PoseIcon(
             PoseIconType.check,
             size: 18,
-            color: AppColors.blushPink,
+            color: AppColors.primaryPink,
           ),
           const SizedBox(width: 12),
           Expanded(child: Text(label, style: AppTextStyles.bodyStrong)),
           Text(
             'pending',
-            style: AppTextStyles.caption.copyWith(color: AppColors.blushPink),
+            style: AppTextStyles.caption.copyWith(color: AppColors.primaryPink),
           ),
         ],
       ),

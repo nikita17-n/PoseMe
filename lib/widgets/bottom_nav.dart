@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import 'pose_icons.dart';
 
-/// Clean PoseMe bottom navigation.
+/// Clean PoseMe bottom navigation with a prominent central Camera button.
 ///
-/// The Camera tab is visually emphasized with a raised rose circle.
+/// Tabs: Home, Explore, Camera, Saved, Profile
 class PoseBottomNav extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
@@ -18,9 +18,9 @@ class PoseBottomNav extends StatelessWidget {
 
   static const _tabs = [
     _NavItem(PoseIconType.home, 'Home'),
-    _NavItem(PoseIconType.pose, 'Poses'),
+    _NavItem(PoseIconType.pose, 'Explore'),
     _NavItem(PoseIconType.camera, 'Camera', emphasized: true),
-    _NavItem(PoseIconType.favorite, 'Favorites'),
+    _NavItem(PoseIconType.favorite, 'Saved'),
     _NavItem(PoseIconType.profile, 'Profile'),
   ];
 
@@ -28,7 +28,7 @@ class PoseBottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: AppColors.softIvory,
+        color: AppColors.white,
         border: Border(top: BorderSide(color: AppColors.hairline, width: 1)),
         boxShadow: [
           BoxShadow(
@@ -41,7 +41,7 @@ class PoseBottomNav extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: SizedBox(
-          height: 68,
+          height: 70,
           child: Row(
             children: [
               for (var i = 0; i < _tabs.length; i++)
@@ -107,45 +107,26 @@ class _NavButtonState extends State<_NavButton> {
                 scale: _pressed ? 0.92 : 1.0,
                 duration: const Duration(milliseconds: 140),
                 child: Container(
-                  width: 48,
-                  height: 48,
+                  width: 50,
+                  height: 50,
                   decoration: BoxDecoration(
-                    color: selected ? AppColors.softRose : AppColors.softIvory,
+                    color: AppColors.primaryPink,
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: selected ? AppColors.softRose : AppColors.hairline,
-                      width: 1.4,
-                    ),
-                    boxShadow: selected
-                        ? const [
-                            BoxShadow(
-                              color: AppColors.cardShadow,
-                              blurRadius: 14,
-                              offset: Offset(0, 6),
-                            ),
-                          ]
-                        : null,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: AppColors.cardShadow,
+                        blurRadius: 14,
+                        offset: Offset(0, 6),
+                      ),
+                    ],
                   ),
                   child: Center(
                     child: PoseIcon(
                       item.icon,
                       size: 24,
-                      color: selected
-                          ? AppColors.deepPlum
-                          : AppColors.mutedRoseGray,
+                      color: AppColors.white,
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                item.label,
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-                  color: selected
-                      ? AppColors.dustyRose
-                      : AppColors.mutedRoseGray,
                 ),
               ),
             ],
@@ -171,7 +152,7 @@ class _NavButtonState extends State<_NavButton> {
               PoseIcon(
                 item.icon,
                 size: 23,
-                color: selected ? AppColors.dustyRose : AppColors.mutedRoseGray,
+                color: selected ? AppColors.primaryPink : AppColors.secondaryText,
               ),
               const SizedBox(height: 3),
               Text(
@@ -179,9 +160,7 @@ class _NavButtonState extends State<_NavButton> {
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-                  color: selected
-                      ? AppColors.dustyRose
-                      : AppColors.mutedRoseGray,
+                  color: selected ? AppColors.primaryPink : AppColors.secondaryText,
                 ),
               ),
             ],
